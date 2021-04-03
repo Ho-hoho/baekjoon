@@ -4,22 +4,27 @@ int a[3000][3000];
 int score[3] = {0};
 
 int sol (int y, int x ,int k){
-	if (k == 1){
-		if(a[y][x] == 0){
-			printf("%d %d %d \n",y,x, a[y][x]);
-			score[0] += 1;
-		}
-		else if(a[y][x] == 1){
-			printf("%d %d %d \n",y,x, a[y][x]);
-			score[1] += 1;
-		}
-		else if(a[y][x] == -1){
-			printf("%d %d %d \n",y,x, a[y][x]);
-			score[2] += 1;
+/*	if(k == 1){
+		for(int i =0; i<3;i++){
+			for(int j=0;j<3;j++){
+				if(a[y+i][x+j] == 0){
+					//printf("%d %d %d \n",y,x, a[y][x]);
+					score[0] += 1;
+				}
+				else if(a[y+i][x+j] == 1){
+					//printf("%d %d %d \n",y,x, a[y][x]);
+					score[1] += 1;
+				}
+				else if(a[y+i][x+j] == -1){
+					//printf("%d %d %d \n",y,x, a[y][x]);
+					score[2] += 1;
+				}
+			}
 		}
 		return 0;
 	}
-	int flag = a[y][x];
+	*/
+	int flag = a[y][x],yflag=0,xflag=0;
 	for(int i=0;i<k;i++){
 		for(int j=0; j<k;j++){
 			if (a[y+i][x+j] == flag)
@@ -27,34 +32,35 @@ int sol (int y, int x ,int k){
 			else {
 				flag = 10;
 				break;
+				
 			}
 		}
 	}
-	
+
 	if(flag == 10){
-		for(int i=0; i< k ; i += 3){
-			for(int j=0; j < k ;j += 3){
-				printf("divide %d %d to %d\n", i,j,k/3);
-				sol(i,j, k/3);
+		for(int i=0; i< k ; i += (k/3)){
+			for(int j=0; j < k ;j += (k/3)){
+			//	printf("divide %d %d to %d\n", y+i,x+j,k/3);
+				sol(y+i,x+j, k/3);
 			}
 		}
 	}
 	else{
 		if(a[y][x] == 0){
-			printf("%d %d %d \n",y,x, a[y][x]);
+			//printf("%d %d %d \n",y,x, a[y][x]);
 			score[0] += 1;
 		}
 		else if(a[y][x] == 1){
-			printf("%d %d %d \n",y,x, a[y][x]);
+			//printf("%d %d %d \n",y,x, a[y][x]);
 			score[1] += 1;
 		}
 		else if(a[y][x] == -1){
-			printf("%d %d %d \n",y,x, a[y][x]);
+			//printf("%d %d %d \n",y,x, a[y][x]);
 			score[2] += 1;
 		}
 	}
 	
-	
+	return 0;
 }
 
 int main (){
