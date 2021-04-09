@@ -27,7 +27,7 @@ int sol(int dir, int sx, int sy, int ex, int ey){
 	}
 	if(impur ==0 && jewl == 0)
 		return 0;
-	else if(impurr ==0; && jewl == 1)
+	else if(impur ==0 && jewl == 1)
 		return 1;
 	else if (jewl > 1 && impur ==0)
 		return 0;
@@ -36,24 +36,35 @@ int sol(int dir, int sx, int sy, int ex, int ey){
 	for(int i=sy; i<ey ;i++){
 		for(int j=sx; j<ex ;j++){
 			if(arr[i][j] == 1){
-				if(dir == 0){ // vertical
-					int check = 0;
+				if(dir == 0){ // horizontal 가로
+					int check = 1;
 					for(int k = sx ; k< ex ;k++){
-						if(arr[i][x] == 2){
-							check = 1;
+						if(arr[i][k] == 2){
+							check = 0;
 							break;
 						}
 					}
-					if(check)
+					if(check){
+						result += sol(1,sx,sy,ex,i)*sol(1,sx,i+1,ex,ey);
+					}
 				}
-				else{ //horizontal
-		
+				else{ //vertical 세로
+					int check = 1;
+					for(int k = sy ; k< ey ;k++){
+						if(arr[k][j] == 2){
+							check = 0;
+							break;
+						}
+					}
+					if(check){
+						result += sol(0,sx,sy,j,ey)*sol(0,j+1,sy,ex,ey);
+					}
 				}	
 			}
 		}
 	}
 	
-
+return result;
 	
 	
 }
@@ -66,13 +77,12 @@ int main(void) {
 			scanf("%d",&arr[i][j]);
 		}
 	}
-	int result = sol(0,0,0,n,n)+sol(1,0,0,n,n)
+	int result = sol(0,0,0,n,n)+sol(1,0,0,n,n);
 	
-	if(reulst == 0)
+	if(result == 0)
 		printf("-1");
 	else
 		printf("%d",result);
 	
 	return 0;
 }
-
