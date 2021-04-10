@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+// https://2jinishappy.tistory.com/135
 long long qnt[21][2] ={0};
 
 int main (){
