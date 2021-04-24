@@ -1,15 +1,43 @@
 #include <stdio.h>
+#include <math.h>
 // https://2jinishappy.tistory.com/135
-long long qnt[21][2] ={0};
+int cube[21] ={0};
+int L,W,H,n,f=1;
+
+int func(int l, int w, int h){
+	if(!l || !w || !h) return 0;
+	int k = l;
+	if(w < k) k=w;
+	if(h < k) k=h;
+	
+	int t =log2(k);
+	while(t >=0){
+		if(!cube[t]){
+			t--;
+			continue;
+		}
+		cube[t]--;
+		int T = pow(2,t);
+		return func(l-T,T,h) + func(l, w-T,h) + func(T,T,h-T) + 1;
+		t--;
+	};
+	f=0;
+	return -1;
+}
 
 int main (){
-	int l,w,h ;
-	int n;
-	scanf("%d %d %d",&l,&w,&h);
+	scanf("%d %d %d",&L,&W,&H);
 	scanf("%d",&n);
-	for(int i=0;i<n;i++){
-		scanf("%lld %lld",&qnt[i][0], &qnt[i][1]);
+	for(int i=0,a,b;i<n;i++){
+		scanf("%d %d",&a, &b);
+		cube[a] = b;
 	}
+	int ans = func(L,W,H);
+	if(f)
+		printf("%d",ans);
+	else
+		printf("-1");
+	return 0;
 	
 	
 }
