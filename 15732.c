@@ -16,7 +16,7 @@ int main(void) {
 
 	
 	while(low <= high){
-		int result=0;
+		long long result=0;
 		//printf("%d %d\n", low ,high);
 		mid = (low + high) / 2 ;
 		for(int i=0 ;i<k;i++){
