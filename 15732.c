@@ -15,7 +15,7 @@ int main(void) {
 	long long mid = 0;
 
 	
-	while(low <= high){
+	while(low+1 < high){
 		long long result=0;
 		//printf("%d %d\n", low ,high);
 		mid = (low + high) / 2 ;
@@ -28,20 +28,22 @@ int main(void) {
 			else{
 				result += ((mid -a[i]) / c[i]) + 1;
 			}
-		}
+		}/*
 		if(result == d){
 				ans = mid;
 				break;
-			}
-		else if(result > d){
-			high = mid - 1;
+			} 
+		else // mid 가 존재 하지 않는데 이하로 k 개 있을 수도 있다. 
+		*/
+		if(result >= d){
+			high = mid ;
 		}
 		else{
-			low = mid + 1;
+			low = mid ;
 		}
 			
 	}
 	
-	printf("%d", ans);
+	printf("%d", high);
 	return 0;
 }
