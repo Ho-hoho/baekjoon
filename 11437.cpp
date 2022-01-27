@@ -45,7 +45,7 @@ int LCA(int u, int v) {
 
 	if (u != v) {
 		for (int i = MAX_H; i >= 0; i--) {
-			if (parent[u][i] != -1 && parent[u][i] != parent[v][i]) {
+			if (parent[u][i] != 0 && parent[u][i] != parent[v][i]) {
 				u = parent[u][i];
 				v = parent[v][i];
 			}
@@ -57,7 +57,7 @@ int LCA(int u, int v) {
 
 int main() {
 	cin >> N;
-	memset(depth, -1, sizeof(depth));
+	memset(depth, 0, sizeof(depth));
 	memset(parent, -1, sizeof(parent));
 	depth[1] = 0;
 	for (int i = 0; i < N-1; i++) {
