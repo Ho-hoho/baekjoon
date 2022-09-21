@@ -1,2 +1,2 @@
 # baekjoon
-gdgd
+Borare	백준 문제 풀이
