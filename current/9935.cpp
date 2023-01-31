@@ -41,7 +41,7 @@ int main (){
             ans += s.top().first;
             s.pop();
         }
-        for(int i = ans.length(); i >=0 ; i--)
+        for(int i = ans.length()-1; i >=0 ; i--)
             cout << ans[i];
     }
     
